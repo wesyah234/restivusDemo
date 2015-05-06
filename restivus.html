@@ -3,9 +3,13 @@
 </head>
 
 <body>
+  {{>main}}
+</body>
+
+<template name='main'>
   <h1>Welcome to the Restivus Demo!</h1>
   If you're seeing this message something went wrong with the api... try these urls:<br/><br/>
-  
+
   <a href='/api/things'>Get all Things</a><br/>
   <a href='/api/getByNickname/Sue'>Get Thing with nickname Sue</a><br/>
   <a href='/api/getByParam/?name=Maxwell'>Get Thing with full name Maxwell</a><br/>
@@ -13,4 +17,5 @@
   <br/>
   See javascript file for more information
 
-</body>
+
+</template>

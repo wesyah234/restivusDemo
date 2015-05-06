@@ -87,7 +87,7 @@ if (Meteor.isServer) {
       }
       else {
         console.log("couldn't find thing");
-      return {
+        return {
           statusCode: 404,
           body: {message: "couldn't find the thing with name " + name}
         };
@@ -124,7 +124,7 @@ if (Meteor.isServer) {
       }
       else {
         console.log("couldn't find thing");
-      return {
+        return {
           statusCode: 404,
           body: {message: "couldn't find the thing with nickname " + nickname}
         };

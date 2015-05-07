@@ -135,4 +135,39 @@ if (Meteor.isServer) {
     }
   });
 
+  Restivus.addRoute('getXml/:nickname', {authRequired: false}, {
+    get: function () {
+      var nickname = this.urlParams.nickname;
+      console.log("getXml, finding by nickname " + nickname);
+      var theThing = Things.findOne({nickname: nickname});
+      if (theThing) {
+        console.log("found thing: ", theThing);
+        return {
+          statusCode: 200,
+          headers: {
+            'Content-Type': 'application/xml',
+            'X-Custom-Header': 'custom value'
+          },
+          // NOTE: Is there a json to xml converter for meteor?
+          body: "<body><message>found the thing with nickname " + nickname + "</message><result><_id>"+theThing._id+"</_id><nickname>"+theThing.nickname+"</nickname><name>"+theThing.name+"</name></result></body>"
+        };
+      }
+      else {
+        console.log("getXml, couldn't find thing");
+        return {
+          statusCode: 404,
+          headers: {
+            'Content-Type': 'application/xml',
+            'X-Custom-Header': 'custom value'
+          },
+          body: "<body><message>couldn't find the thing with nickname " + nickname + "</message></body>"
+        };
+      }
+    },
+    post: function () {
+      console.log("post to getByNickname");
+    }
+  });
+
+
 }
